@@ -5,8 +5,8 @@ const Company = require('../models/company.js');
 
 exports.findAll = (req, res) => {
     Company.find()
-        .then(products => {
-            res.send(products);
+        .then(companies => {
+            res.send(companies);
         }).catch(err => {
             res.status(500).send({
                 message: err.message
@@ -41,3 +41,10 @@ exports.updateById = (req, res) => {
         res.send(company);
     })
 }
+
+// exports.findProductsByCompanyId = (req, res) => {
+//     Company.findById(req.params.id, (err, company) => {
+//         if (err) throw err;
+//         res.send(company.products);
+//     })
+// }

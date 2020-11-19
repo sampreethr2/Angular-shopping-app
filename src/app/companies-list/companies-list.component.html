@@ -1,16 +1,39 @@
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Company Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let company of companies;let rowIndex=index">
-                <td>{{rowIndex+1}}</td>
-                <td>{{company.name}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="mt-5 dropdown"> Select a Company: 
+        <select class="btn btn-primary dropdown-toggle" [(ngModel)]="selected" placeholder="select" (ngModelChange)="onOptionsSelected()">
+            <option [ngvalue]="company" *ngFor="let company of companies">{{company.name}}</option>
+        </select>
+    </div>
+    <div class="mt-5" *ngFor="let com of curr">
+        <div class="mb-5">
+            <!-- {{com.name}} -->
+            <button (click)="editCompany(com)" class="btn btn-info">Edit Selected Company</button> |
+            <button (click)="deleteCompany(com)" class="btn btn-danger">Delete Selected Company</button>
+        </div>
+        <table border="1" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price($)</th>
+                    <th>Options</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of com.products">
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.name}}</td>
+                    <td>{{prod.price}}</td>
+                    <td><button (click)="editProduct(prod)" class="btn btn-info">Edit</button> | <button (click)="deleteProduct(prod)" class="btn btn-danger">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="input-group mt-5 mb-3">
+        <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="comp" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="addCompany()" type="button">Add Company</button>
+        </div>
+    </div>
 </div>
