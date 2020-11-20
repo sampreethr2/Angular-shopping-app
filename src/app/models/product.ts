@@ -1,14 +1,11 @@
 export class Product {
-    id: String;
+    id: Number;
     name: String;
     price: Number;
-    photo: String;
 
-    constructor(data: any) {
-        data = data || {};
-        this.id = data.id;
-        this.name = data.name;
-        this.price = data.price;
-        this.photo = data.photo;
+    constructor(id,name,price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
 }

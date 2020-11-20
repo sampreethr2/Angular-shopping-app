@@ -1,15 +1,13 @@
 import { Product } from './product';
 export class Company {
-    _id: string;
     name: string;
     products: Product[];
 
-    constructor(data: any) {
-        data = data || {};
-        this.name = data.name;
+    constructor(name,Products) {
+        this.name = name;
         this.products = [];
-        data.products.forEach(p => {
-            this.products.push(new Product(p));
+        Products.forEach(p => {
+            this.products.push(new Product(p.id,p.name,p.price));
         });
     }
 }

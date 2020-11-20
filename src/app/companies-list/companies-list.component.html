@@ -7,8 +7,13 @@
     <div class="mt-5" *ngFor="let com of curr">
         <div class="mb-5">
             <!-- {{com.name}} -->
-            <button (click)="editCompany(com)" class="btn btn-info">Edit Selected Company</button> |
             <button (click)="deleteCompany(com)" class="btn btn-danger">Delete Selected Company</button>
+            <div class="input-group mt-5 mb-3">
+                <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="comp" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-info" (click)="editCompany(com)" type="button">Edit Company Name</button>
+                </div>
+            </div>
         </div>
         <table border="1" class="table table-striped">
             <thead>
@@ -17,7 +22,6 @@
                     <th>Name</th>
                     <th>Price($)</th>
                     <th>Options</th>
-                    
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +29,38 @@
                     <td>{{prod.id}}</td>
                     <td>{{prod.name}}</td>
                     <td>{{prod.price}}</td>
-                    <td><button (click)="editProduct(prod)" class="btn btn-info">Edit</button> | <button (click)="deleteProduct(prod)" class="btn btn-danger">Delete</button></td>
+                    <td><button (click)="toggle(com,prod)" id="bt" class="btn btn-info">Edit</button> | <button (click)="deleteProduct(com,prod)" class="btn btn-danger">Delete</button></td>
+                </tr>
+                <tr>
+                <ng-container *ngIf="show">
+                    <div style="margin: 0 auto;text-align: left;">
+                        <div>
+                            <label>ID:</label>
+                            <div><input [(ngModel)]="pId" type="text" /></div>
+                        </div>
+                        <div>
+                            <label>Name:</label>
+                            <div><input [(ngModel)]="pName" type="text" /></div>
+                        </div>
+                        <div>
+                            <label>Price:</label>
+                            <div><input [(ngModel)]="price" type="text"/></div>
+                        </div>
+                        <div>
+                            <button class="btn btn-info" (click)="addProduct(com)">Edit Product</button>
+                        </div>
+                    </div>
+                </ng-container>
                 </tr>
             </tbody>
         </table>
+        {{com.name}}
+        <div>
+            <input type="text" [(ngModel)]="pId" placeholder="Product ID">
+            <input type="text" [(ngModel)]="pName" placeholder="Product Name">
+            <input type="text" [(ngModel)]="price" placeholder="Product Price">
+            <button class="btn btn-success" (click)="addProduct(com)" type="button">Create Product</button>
+        </div>
     </div>
     <div class="input-group mt-5 mb-3">
         <input type="text" class="form-control" placeholder="Company Name" [(ngModel)]="comp" aria-label="Recipient's username" aria-describedby="basic-addon2">
